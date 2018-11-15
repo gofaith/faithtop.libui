@@ -8,9 +8,13 @@ type IView interface {
 	getBaseView() *FBaseView
 }
 type FBaseView struct {
-	view ui.Control
+	view    ui.Control
+	stretch bool
 }
 
 func (v *FBaseView) getBaseView() *FBaseView {
 	return v
+}
+func (v *FBaseView) Expand() {
+	v.stretch = true
 }

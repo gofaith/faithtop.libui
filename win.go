@@ -12,10 +12,11 @@ type FWin struct {
 func Win(title string, w, h int, hasMenubar bool) *FWin {
 	v := &FWin{}
 	v.v = ui.NewWindow(title, w, h, hasMenubar)
-	return w
+	return v
 }
 func (w *FWin) DeferShow() *FWin {
 	w.showAfter = true
+	return w
 }
 func (w *FWin) Add(i IView) *FWin {
 	w.v.SetChild(i.getBaseView().view)
