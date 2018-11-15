@@ -1,0 +1,15 @@
+# todos
+- image
+- listview
+- menubar
+- progress
+- scroll
+- tab
+- label
+- edit
+- combo
+- spin
+- space
+- spinbox
+- radioButton
+- checkBox
