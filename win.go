@@ -21,6 +21,12 @@ func Win(w, h int) *FWin {
 	})
 	return v
 }
+func Popup(w, h int) *FWin {
+	return Win(w, h).Bordless()
+}
+func ShowWin(i IView) *FWin {
+	return Win(200, 200).DeferShow().Add(i)
+}
 func (v *FWin) Title(t string) *FWin {
 	v.v.SetTitle(t)
 	return v
@@ -58,5 +64,13 @@ func (v *FWin) VBox(is ...IView) *FWin {
 
 func (v *FWin) HBox(is ...IView) *FWin {
 	v.Add(HBox().Append(is...))
+	return v
+}
+func (v *FWin) Margin() *FWin {
+	v.v.SetMargined(true)
+	return v
+}
+func (v *FWin) Bordless() *FWin {
+	v.v.SetBorderless(true)
 	return v
 }
