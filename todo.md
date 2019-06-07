@@ -1,6 +1,4 @@
 # todos
-- image
-- listview
 - menubar
 - progress
 - scroll
