@@ -27,9 +27,23 @@ func (v *FButton) Text(t string) *FButton {
 	v.v.SetText(t)
 	return v
 }
+
+func (f *FButton) GetText() string {
+	return f.v.Text()
+}
+
 func (v *FButton) OnClick(f func()) *FButton {
 	v.v.OnClicked(func(*ui.Button) {
 		f()
 	})
+	return v
+}
+
+func (v *FButton) Enabled(b bool) *FButton {
+	if b {
+		v.v.Enable()
+	} else {
+		v.v.Disable()
+	}
 	return v
 }

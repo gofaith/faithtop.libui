@@ -5,35 +5,24 @@ import (
 )
 
 type tableHandler struct {
-	types        []ui.TableValue
-	numRows      int
-	cellValue    func(row, column int) ui.TableValue
-	setCellValue func(row, column int, value ui.TableValue)
+	fnOnGetRows      func() int
+	columnTypes []ui.TableValue
+	fnCellValue        func(model *ui.TableModel,row, column int) ui.TableValue
+	fnSetCellValue     func(model *ui.TableModel,row, column int, value ui.TableValue)
 }
 
 func (t *tableHandler) ColumnTypes(m *ui.TableModel) []ui.TableValue {
-	if t.types == nil {
-		return []ui.TableValue{
-			ui.TableString(""),
-		}
-	}
-	return t.types
+	return t.columnTypes
 }
 
 func (t *tableHandler) NumRows(m *ui.TableModel) int {
-	return t.numRows
+	return t.fnOnGetRows()
 }
 
 func (t *tableHandler) CellValue(m *ui.TableModel, row, column int) ui.TableValue {
-	if t.cellValue == nil {
-		panic("cellValue")
-	}
-	return t.cellValue(row, column)
+	return t.fnCellValue(m,row, column)
 }
 
 func (t *tableHandler) SetCellValue(m *ui.TableModel, row, column int, value ui.TableValue) {
-	if t.setCellValue == nil {
-		panic("setCellValue")
-	}
-	t.setCellValue(row, column, value)
+	t.fnSetCellValue(m,row, column, value)
 }
